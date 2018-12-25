@@ -54,7 +54,8 @@ source=(#"https://ftp.gnu.org/gnu/gcc/${_realname}-${pkgver%%+*}/${_realname}-${
         0014-clone_function_name_1-Retain-any-stdcall-suffix.patch
         0019-gcc-8-branch-Backport-patches-for-std-filesystem-from-master.patch
         0130-libstdc++-in-out.patch
-        0140-gcc-8.2.0-diagnostic-color.patch)
+        0140-gcc-8.2.0-diagnostic-color.patch
+        0200-add-fuse-ld-lld.patch)
 sha256sums=('6b188fef83067782868065b93c8f5dbb598e7e260a6889e3b76ccc2ec5d5d12b'
             'dea2bbad4967280910559c6a11b865aeec19cab34647fb5894cb498b24b14462'
             '2dd7498bcb25b41afcc458696386b456ee4ff440bf395519a23d1f945ba15a41'
@@ -70,7 +71,8 @@ sha256sums=('6b188fef83067782868065b93c8f5dbb598e7e260a6889e3b76ccc2ec5d5d12b'
             '60a58ed41389691a68ef4b7d47a0328df4d28d26e6c680a6b06b31191481ca65'
             'b3a02a35e5e9fce937bf7a617fe56b16d36cfe2184becb481a87f511ce292e85'
             'ba2f77db605577d08e4079f08a7a9556c975b5416be8610c5be31e915637feb7'
-            'e467f0ac68b349de826c79b00a45c5ad9e7c5a55d06b9b9fa7afd94c597f6376')
+            'e467f0ac68b349de826c79b00a45c5ad9e7c5a55d06b9b9fa7afd94c597f6376'
+            'b91e0b5124b2af515176574f6b8c9d5d70dca2eb0152a8fb9d7afbe48ecdebfc')
 
 _threads="posix"
 
@@ -123,6 +125,9 @@ prepare() {
   # Вячеслав Петрищев <vyachemail@gmail.com>
   apply_patch_with_msg \
     0140-gcc-8.2.0-diagnostic-color.patch
+
+  apply_patch_with_msg \
+    0200-add-fuse-ld-lld.patch
 
   # do not expect ${prefix}/mingw symlink - this should be superceded by
   # 0005-Windows-Don-t-ignore-native-system-header-dir.patch .. but isn't!
